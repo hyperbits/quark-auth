@@ -4,11 +4,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"quark"
-	"quark-auth/controllers"
+
+	quarkModels "github.com/hyperbits/quark/models"
+
 	middleware "quark-auth/middleware"
+
+	"quark-auth/controllers"
 	"quark-auth/models"
-	quarkModels "quark/models"
+
+	"github.com/hyperbits/quark"
 )
 
 type Auth struct {

@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/base64"
 	"os"
-	"quark"
+	"github.com/hyperbits/quark"
 	"sherkston-trailer-rentals/util"
 	"strings"
 	"time"

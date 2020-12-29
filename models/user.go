@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"quark"
+	"github.com/hyperbits/quark"
 	"sherkston-trailer-rentals/util"
 	"strings"
 
