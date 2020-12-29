@@ -1,0 +1,13 @@
+Hi {{.firstName}},
+
+Please find your verification code below. Enter this code when prompted during the sign up process or click the verify button below.
+
+{{.code}}
+
+Alternatively, you can click visit the link below to verify your email.
+
+{{.url}}
+
+----
+
+{{.appName}}

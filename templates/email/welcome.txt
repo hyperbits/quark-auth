@@ -1,0 +1,9 @@
+Welcome to {{.appName}}!
+
+Hi {{.firstName}},
+
+Thank you for registering with us! We hope you enjoy what we have to offer.
+
+----
+
+{{.appName}}
