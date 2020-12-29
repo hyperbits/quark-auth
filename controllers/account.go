@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"quark-auth/models"
+	"github.com/hyperbits/quark-auth/models"
 	"strconv"
 	"time"
 

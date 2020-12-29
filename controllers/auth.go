@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"quark-auth/models"
+	"github.com/hyperbits/quark-auth/models"
 	"time"
 
 	"github.com/hyperbits/quark/crypto"

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"quark-auth/models"
+	"github.com/hyperbits/quark-auth/models"
 	"strconv"
 
 	"github.com/hyperbits/quark/crypto"

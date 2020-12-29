@@ -7,10 +7,10 @@ import (
 
 	quarkModels "github.com/hyperbits/quark/models"
 
-	middleware "quark-auth/middleware"
+	middleware "github.com/hyperbits/quark-auth/middleware"
 
-	"quark-auth/controllers"
-	"quark-auth/models"
+	"github.com/hyperbits/quark-auth/controllers"
+	"github.com/hyperbits/quark-auth/models"
 
 	"github.com/hyperbits/quark"
 )

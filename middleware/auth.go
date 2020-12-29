@@ -4,7 +4,7 @@ package middleware
 import (
 	"fmt"
 	"net/http"
-	"quark-auth/models"
+	"github.com/hyperbits/quark-auth/models"
 	"strings"
 
 	"github.com/hyperbits/quark/response"
