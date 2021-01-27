@@ -3,9 +3,11 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"github.com/hyperbits/quark-auth/models"
 	"strconv"
 	"time"
+
+	"github.com/hyperbits/quark-auth/models"
+	"github.com/jinzhu/gorm"
 
 	"github.com/hyperbits/quark/crypto"
 	"github.com/hyperbits/quark/response"
@@ -27,14 +29,12 @@ func (c *AuthController) UserRegister() http.Handler {
 		}
 		defer r.Body.Close()
 
-		var count = 0
-		if result := c.App.DB.Table("users").Where(&models.User{Email: ur.Email}).Count(&count); result.Error != nil {
-			response.RespondAndLogError(w, http.StatusInternalServerError, "Could not check if user exists", result.Error.Error())
-			return
-		}
-		if count > 0 {
-			response.RespondWithError(w, http.StatusConflict, "User already exists with that email")
-			return
+		var exists models.User
+		if result := c.App.DB.Where(&models.User{Email: ur.Email}).First(&exists); result.Error != nil {
+			if result.Error != gorm.ErrRecordNotFound {
+				response.RespondAndLogError(w, http.StatusInternalServerError, "Could not check if user exists", result.Error.Error())
+				return
+			}
 		}
 
 		hashed, saltErr := crypto.HashAndSalt([]byte(ur.Password))
@@ -84,17 +84,17 @@ func (c *AuthController) CheckEmail() http.Handler {
 			return
 		}
 
-		var count = 0
-		if result := c.App.DB.Table("users").Where(&models.User{Email: ur.Email}).Count(&count); result.Error != nil {
+		var user models.User
+		if result := c.App.DB.Where(&models.User{Email: ur.Email}).First(&user); result.Error != nil {
+			if result.Error == gorm.ErrRecordNotFound {
+				response.RespondWithJSON(w, http.StatusOK, "Ok")
+				return
+			}
 			response.RespondAndLogError(w, http.StatusInternalServerError, "Could not check if user exists", result.Error.Error())
 			return
 		}
-		if count > 0 {
-			response.RespondWithError(w, http.StatusConflict, "User already exists with that email")
-			return
-		}
-
-		response.RespondWithJSON(w, http.StatusOK, "Ok")
+		response.RespondWithError(w, http.StatusConflict, "User already exists with that email")
+		return
 	})
 }
 
